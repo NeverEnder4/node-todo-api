@@ -63,17 +63,20 @@ app.delete('/todos/:id', (req, res) => {
            return res.status(404).send();
         }
 
-       return res.send(todo);
+       return res.send({ todo });
     }, (e) => {
        return res.status(400).send();
     })
 })
 
 
+if(!module.parent) {
+    app.listen(port, () => {
+        console.log(`Started up on port ${port}`);
+    })
 
-app.listen(port, () => {
-    console.log(`Started up on port ${port}`);
-})
+}
+
 
 module.exports = { app };
 
